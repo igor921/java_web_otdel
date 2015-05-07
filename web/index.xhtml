@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Главная</title>
+    </h:head>
+    <h:body>
+        <h:form id="mainform">  
+            <p:growl showDetail="true" id="messages"/>
+            <ui:include src="WEB-INF/template/menu.xhtml" />
+            <h:form>
+                <p:panelGrid style="text-align: center" columns="1" layout="grid">  
+                    <p:inputText value="#{forLogin.userData.login}" style="margin-right:10px" placeholder="Логин"  >
+                        <p:ajax />
+                    </p:inputText>
+                    <p:password value="#{forLogin.userData.pass}"  style="margin-right:10px" placeholder="Пароль">
+                        <p:ajax />
+                    </p:password>
+                    <p:commandButton update=":mainform:messages" action="#{forLogin.login()}" value="Вход" />
+                    <p:commandLink action="register" value="Регистрация" style="color: blue; font-size: 12px" />
+                </p:panelGrid>
+                
+            </h:form>
+        </h:form>
+    </h:body>
+</html>
+
