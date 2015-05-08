@@ -9,7 +9,7 @@ import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
 @Entity
-@Table(name = "app1")
+@Table(name = "app2")
 public class App2 implements Serializable {
     
     @Id
