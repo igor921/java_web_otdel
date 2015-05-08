@@ -30,11 +30,14 @@ public class App5 implements Serializable {
     @Column(name="education")
     String education;
     
-    @Column(name="tabNomber")
-    String tabNomber;
+    @Column(name="educationType")
+    String educationType;
     
-    @Column(name="phone")
-    String phobe;
+    @Column(name="educationMonthDay")
+    String educationMonthDay;
+    
+    @Column(name="price")
+    int price;
     
     public int getId() {
         return id;
@@ -76,22 +79,29 @@ public class App5 implements Serializable {
         this.education = education;
     }
 
-    public String getTabNomber() {
-        return tabNomber;
+    public String getEducationType() {
+        return educationType;
     }
 
-    public void setTabNomber(String tabNomber) {
-        this.tabNomber = tabNomber;
+    public void setEducationType(String educationType) {
+        this.educationType = educationType;
     }
 
-    public String getPhobe() {
-        return phobe;
+    public String getEducationMonthDay() {
+        return educationMonthDay;
     }
 
-    public void setPhobe(String phobe) {
-        this.phobe = phobe;
+    public void setEducationMonthDay(String educationMonthDay) {
+        this.educationMonthDay = educationMonthDay;
     }
-    
-    
+
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
     
 }

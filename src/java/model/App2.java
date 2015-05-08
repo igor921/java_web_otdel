@@ -21,6 +21,17 @@ public class App2 implements Serializable {
     @Column(name="fio")
     String fio;
     
+    @Column(name="ownerid")
+    int ownerid;
+
+    public int getOwnerid() {
+        return ownerid;
+    }
+
+    public void setOwnerid(int ownerid) {
+        this.ownerid = ownerid;
+    }
+    
     @Column(name="dolzhTabNumber")
     String dolzhTabNumber;
     
