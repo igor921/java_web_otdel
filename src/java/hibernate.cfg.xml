@@ -16,6 +16,12 @@
     <property name="hibernate.hbm2ddl.auto">update</property>
     <property name="hibernate.connection.autocommit">false</property>
     <property name="current_session_context_class">thread</property>  
-    <mapping class="model.Users" />  
+    <mapping class="model.Users" /> 
+    <mapping class="model.App1" /> 
+    <mapping class="model.App2" /> 
+    <mapping class="model.App3" /> 
+    <mapping class="model.App4" /> 
+    <mapping class="model.App5" /> 
+    <mapping class="model.App6" />  
   </session-factory>
 </hibernate-configuration>
