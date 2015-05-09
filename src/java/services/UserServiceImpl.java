@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserSevice{
                
                 session = HibernateUtil.getSessionFactory().openSession();
                 userses = session.createCriteria(Users.class).add( Expression.eq("login", login) )
-                        .add( Expression.eq("pass", login) ).list() ;
+                        .add( Expression.eq("pass", password) ).list() ;
                
             } catch (Exception e) {
                 FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), "Ошибка"));

@@ -5,6 +5,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -35,7 +37,7 @@ public class App1 implements Serializable {
     
     @Column(name="phone")
     String phobe;
-    
+  
     public int getId() {
         return id;
     }
@@ -91,7 +93,7 @@ public class App1 implements Serializable {
     public void setPhobe(String phobe) {
         this.phobe = phobe;
     }
-    
+
     
     
 }

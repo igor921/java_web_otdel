@@ -1,5 +1,6 @@
 
 import User.UserData;
+import java.io.Serializable;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -12,7 +13,7 @@ import services.UserServiceImpl;
 
 @ManagedBean
 @ViewScoped
-public class ForLogin {
+public class ForLogin implements Serializable{
    
     @ManagedProperty("#{userData}")
     UserData userData;
