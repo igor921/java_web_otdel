@@ -27,13 +27,16 @@ public class ForLogin implements Serializable{
             {
                 case "REGISTRED":
                     userData.setUserType(UserData.UserType.REGISTRED);
+                    userData.setId(user.getId());
                     return "user";
                 case "ADMIN":
                     userData.setUserType(UserData.UserType.ADMIN);
+                    userData.setId(user.getId());
                     return "admin";
                 
                 case "MAIN_ADMIN":
                     userData.setUserType(UserData.UserType.MAIN_ADMIN);
+                    userData.setId(user.getId());
                     return "superadmin";
             }
             

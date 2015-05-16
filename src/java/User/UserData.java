@@ -11,6 +11,7 @@ public class UserData implements Serializable{
 
     String login;
     String pass;
+    int id;
     UserType userType = UserType.UNREGISTRED;
 
     public enum UserType {
@@ -63,4 +64,13 @@ public class UserData implements Serializable{
         this.userType = userType;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    
 }
