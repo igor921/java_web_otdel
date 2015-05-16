@@ -26,7 +26,21 @@ public class App4ServiceImpl implements App4Service{
             }
              return true;
     }
+public boolean Clear(List<App4> apps) {
+        Session session = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            for (App4 app : apps) {
+                session.delete(app);
+            }
+            session.getTransaction().commit();
 
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
     @Override
     public List<App4> getallApps() {
         Session session = null;

@@ -18,6 +18,11 @@ public class ForLogin implements Serializable{
     @ManagedProperty("#{userData}")
     UserData userData;
     
+    @PostConstruct
+    public void init(){
+        int g=0;
+    }
+    
     public String login(){
         UserServiceImpl service = new UserServiceImpl();
         Users user = service.login(userData.getLogin(), userData.getPass());

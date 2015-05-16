@@ -26,7 +26,21 @@ public class App6ServiceImpl implements App6Service{
             }
              return true;
     }
+public boolean Clear(List<App6> apps) {
+        Session session = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            for (App6 app : apps) {
+                session.delete(app);
+            }
+            session.getTransaction().commit();
 
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
     @Override
     public List<App6> getallApps() {
         Session session = null;

@@ -27,6 +27,22 @@ public class App3ServiceImpl implements App3Service{
              return true;
     }
 
+    public boolean Clear(List<App3> apps) {
+        Session session = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            for (App3 app : apps) {
+                session.delete(app);
+            }
+            session.getTransaction().commit();
+
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
+    
     @Override
     public List<App3> getallApps() {
         Session session = null;

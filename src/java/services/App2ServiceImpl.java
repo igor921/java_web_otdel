@@ -27,6 +27,22 @@ public class App2ServiceImpl implements App2Service{
              return true;
     }
 
+    public boolean Clear(List<App2> apps) {
+        Session session = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            for (App2 app : apps) {
+                session.delete(app);
+            }
+            session.getTransaction().commit();
+
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
+    
     @Override
     public List<App2> getallApps() {
         Session session = null;

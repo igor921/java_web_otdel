@@ -26,7 +26,21 @@ public class App5ServiceImpl implements App5Service{
             }
              return true;
     }
+public boolean Clear(List<App5> apps) {
+        Session session = null;
+        try {
+            session = HibernateUtil.getSessionFactory().openSession();
+            session.beginTransaction();
+            for (App5 app : apps) {
+                session.delete(app);
+            }
+            session.getTransaction().commit();
 
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
     @Override
     public List<App5> getallApps() {
         Session session = null;
