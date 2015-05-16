@@ -13,6 +13,7 @@ import services.UserServiceImpl;
 public class Registration {
     String login;
     String pass;
+    String fio;
     String userType = UserType.REGISTRED.toString();
 
     public void doReg(){
@@ -22,6 +23,7 @@ public class Registration {
             user.setLogin(login);
             user.setPass(pass);
             user.setUserType(userType);
+            user.setFio(fio);
             UserServiceImpl userService = new UserServiceImpl();
             if(userService.addUser(user)){
                 FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Успех", "авторизируйтесь через главную страницу");
@@ -56,6 +58,14 @@ public class Registration {
 
     public void setUserType(String userType) {
         this.userType = userType;
+    }
+
+    public String getFio() {
+        return fio;
+    }
+
+    public void setFio(String fio) {
+        this.fio = fio;
     }
     
     

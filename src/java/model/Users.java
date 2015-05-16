@@ -33,6 +33,8 @@ public class Users implements Serializable {
     @Column(name="userType")
     String userType;
 
+    @Column(name="fio")
+    String fio;
     
     public String getLogin() {
         return login;
@@ -66,4 +68,13 @@ public class Users implements Serializable {
         this.id = id;
     }
 
+    public String getFio() {
+        return fio;
+    }
+
+    public void setFio(String fio) {
+        this.fio = fio;
+    }
+
+    
 }

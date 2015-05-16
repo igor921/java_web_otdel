@@ -9,10 +9,39 @@
         <title>Главная</title>
     </h:head>
     <h:body>
-        <h:form>  
+        <h:form id="usertableform">  
             <p:growl id="messages"/>
             <ui:include src="WEB-INF/template/menu.xhtml" />
-            <p:outputLabel value="#{userPage.userData.userType}" />
+            <p:dataTable id="eventsDT" var="item" value="#{superAdminPage.usersDataList}" selectionMode="single" selection="#{superAdminPage.selectedUser}" rowKey="#{item.user.id}"
+                         emptyMessage="Данных нет"
+                         rows="5"
+                         paginator="true"
+                         editable="true"
+                         editMode="cell"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
+                <f:facet name="header">
+                    Данные о пользователях
+                </f:facet>
+                <p:ajax event="rowSelect" listener="#{superAdminPage.onRowSelect}" update=":userDetail" />
+
+                <p:column headerText="Номер">
+                    <h:outputText value="#{item.user.id}" />
+                </p:column>
+                <p:column headerText="ФИО">
+                    <h:outputText value="#{item.user.fio}" />
+                </p:column>
+                <p:column headerText="Заполнено">
+                    <h:outputText value="#{item.count} / 6" style="color: #{item.color}" />
+                </p:column>
+
+            </p:dataTable>
+        </h:form>
+        <h:form id="userDetail">
+            <h:panelGrid columns="2">
+                <h:outputText value="Выбран: #{superAdminPage.selectedUser.user.fio}" />
+                <p:commandButton update=":usertableform" actionListener="#{superAdminPage.delSelectedUser()}" value="Удалить выбранного пользователя" />
+            </h:panelGrid>
         </h:form>
     </h:body>
 </html>

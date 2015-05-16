@@ -20,6 +20,9 @@
                     <p:password value="#{registration.pass}"  style="margin-right:10px" placeholder="Пароль">
                         <p:ajax />
                     </p:password>
+                    <p:inputText value="#{registration.fio}" style="margin-right:10px" placeholder="ФИО"  >
+                        <p:ajax />
+                    </p:inputText>
                     <p:commandButton update=":mainform:messages" action="#{registration.doReg()}" value="Регестрация" />
                     
                 </p:panelGrid>
