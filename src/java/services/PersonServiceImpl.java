@@ -55,5 +55,39 @@ public class PersonServiceImpl {
             
             return apps; 
     }
+    
+    public List<Person> getallAppsByOwner(int ownerId) {
+        Session session = null;
+        List<Person> apps = new ArrayList<Person>();
+        try {
 
+            session = HibernateUtil.getSessionFactory().openSession();
+            apps = session.createCriteria(Person.class).add(Expression.eq("ownerid", ownerId)).list();
+
+        } catch (Exception e) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, e.getMessage(), "Ошибка"));
+        } finally {
+
+            if (session != null && session.isOpen()) {
+                //session.close();
+            }
+        }
+
+        return apps;
+    }
+
+    public void saveAll(List<Person> apps) {
+        Session session = null;
+            try {
+                session = HibernateUtil.getSessionFactory().openSession();
+                session.beginTransaction();
+                for (Person app : apps) {
+                session.update(app);
+                }
+                session.getTransaction().commit();
+               
+            } catch (Exception e) {
+                
+            }
+    }
 }

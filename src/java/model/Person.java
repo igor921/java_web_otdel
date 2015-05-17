@@ -69,6 +69,17 @@ public class Person implements Serializable {
     
     @Column(name="workerForEduGrow")
     String workerForEduGrow;
+    
+    @Column(name="ownerid")
+    int ownerid;
+
+    public int getOwnerid() {
+        return ownerid;
+    }
+
+    public void setOwnerid(int ownerid) {
+        this.ownerid = ownerid;
+    }
 
     public String getSexType() {
         return sexType;

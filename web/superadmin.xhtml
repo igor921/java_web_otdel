@@ -7,6 +7,20 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Главная</title>
+        <style>
+            .red{
+                background-color: red;
+                color: white;
+            }
+            .blue{
+                background-color: blue;
+                color: white;
+            }
+            .green{
+                background-color: green;
+                color: white;
+            }
+        </style>
     </h:head>
     <h:body>
         <h:form id="usertableform">  
@@ -18,6 +32,7 @@
                          paginator="true"
                          editable="true"
                          editMode="cell"
+                         rowStyleClass="#{item.count le 0 ? 'red' : item.count le 5 ? 'blue' : 'green'}"
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          rowsPerPageTemplate="5,10,15">
                 <f:facet name="header">
@@ -35,7 +50,7 @@
                     <h:outputText value="#{item.user.otdel}" />
                 </p:column>
                 <p:column headerText="Заполнено">
-                    <h:outputText value="#{item.count} / 6" style="color: #{item.color}" />
+                    <h:outputText value="#{item.count} / 6" />
                 </p:column>
 
             </p:dataTable>

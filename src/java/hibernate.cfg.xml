@@ -17,6 +17,7 @@
     <property name="hibernate.connection.autocommit">false</property>
     <property name="current_session_context_class">thread</property>  
     <mapping class="model.Users" /> 
+    <mapping class="model.Person" /> 
     <mapping class="model.App1" /> 
     <mapping class="model.App2" /> 
     <mapping class="model.App3" /> 

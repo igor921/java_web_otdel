@@ -7,12 +7,241 @@
       xmlns:p="http://primefaces.org/ui">
     <h:head>
         <title>Главная</title>
+        <style>
+            .red{
+                background-color: red;
+                color: white;
+            }
+            .blue{
+                background-color: blue;
+                color: white;
+            }
+            .green{
+                background-color: green;
+                color: white;
+            }
+        </style>
     </h:head>
-    <h:body>
-        <h:form>  
-            <p:growl id="messages"/>
-            <ui:include src="WEB-INF/template/menu.xhtml" />
-            
+    <h:body >
+
+        <p:growl id="messages"/>
+        <ui:include src="WEB-INF/template/menu.xhtml" />
+        <h:form id="adduserform">
+            <h:panelGrid columns="2" style="margin-bottom: 20px;  box-shadow: 3px 4px 22px 3px rgba(19,98,158,1); display: inline-block">
+                <h:outputText value="ФИО: " />
+                <h:inputText value="#{adminPage.person.fio}" >
+                    <p:ajax />
+                </h:inputText>
+                <h:outputText value="Дата рождения(дд.мм.гггг): " />
+                <h:inputText value="#{adminPage.person.birthDate}" >
+                    <p:ajax />
+                </h:inputText>
+                <h:outputText value="Пол(м/ж): " />
+                <h:inputText value="#{adminPage.person.sexType}" >
+                    <p:ajax />
+                </h:inputText>
+                <h:outputText value="Должность: " />
+                <h:inputText value="#{adminPage.person.dolzhnost}" >
+                    <p:ajax />
+                </h:inputText>
+                <h:outputText value="Отдел: " />
+                <h:inputText value="#{adminPage.person.otdel}" >
+                    <p:ajax />
+                </h:inputText>
+                <h:outputText value="Телефон: " />
+                <h:inputText value="#{adminPage.person.phone}" >
+                    <p:ajax />
+                </h:inputText>
+                <h:outputText value="Образование: " />
+                <h:inputText value="#{adminPage.person.education}" >
+                    <p:ajax />
+                </h:inputText>
+                <h:outputText value="Тематика повыш.квалификации: " />
+                <h:inputText value="#{adminPage.person.theme}" >
+                    <p:ajax />
+                </h:inputText>         
+                <h:outputText value="Срок обучения(месяц): " />
+                <h:inputText value="#{adminPage.person.educationLongTyme}" >
+                    <p:ajax />
+                </h:inputText>
+                <h:outputText value="Сумма: " />
+                <h:inputText value="#{adminPage.person.price}" >
+                    <p:ajax />
+                </h:inputText>
+                <h:outputText value="ДЛЯ СОТРУДНИКОВ" /><h:outputText value="" />
+                <h:outputText value="Учебное заведение для повыш.квал (для сотр): " />
+                <h:inputText value="#{adminPage.person.workerForEduGrow}" >
+                    <p:ajax />
+                </h:inputText>
+                <h:outputText value="ДЛЯ СТУДЕНТОВ" /><h:outputText value="" />
+                <h:outputText value="Дата поступления на предприятие: " />
+                <h:inputText value="#{adminPage.person.studentGetDate}" >
+                    <p:ajax />
+                </h:inputText>
+                <h:outputText value="Курс: " />
+                <h:inputText value="#{adminPage.person.studentKurs}" >
+                    <p:ajax />
+                </h:inputText>
+                <h:outputText value="Специальность: " />
+                <h:inputText value="#{adminPage.person.studentspeciality}" >
+                    <p:ajax />
+                </h:inputText>
+                <h:outputText value="Дата окончания ВУЗа: " />
+                <h:inputText value="#{adminPage.person.studentLeaveUnDate}" >
+                    <p:ajax />
+                </h:inputText>
+                <p:outputLabel  value="Сотрудник/Учащийся: " />
+                <p:selectOneMenu id="country" value="#{adminPage.person.persontype}" style="width:150px">
+                    <f:selectItem itemLabel="Тип персоны" itemValue="" noSelectionOption="true" />
+                    <f:selectItems value="#{adminPage.personTypes}" />
+                </p:selectOneMenu>
+
+                <p:commandButton update="persontableform:persontable" value="Добавить данные" actionListener="#{adminPage.add()}"/>
+            </h:panelGrid>
+            <h:panelGrid columns="5" style="margin-bottom: 20px; margin-left: 40px; box-shadow: 3px 4px 22px 3px rgba(19,98,158,1); display: inline-block">
+                <f:facet name="header" ><p:outputLabel  value="ФИЛЬТРЫ" /></f:facet>
+            </h:panelGrid>
+        </h:form>
+        <h:form id="persontableform" style="font-size: 11px" >
+            <p:dataTable id="persontable" emptyMessage="Данных нет" var="items" value="#{adminPage.persons}" rows="5"
+                         paginator="true"
+                         editable="true"
+                         editMode="cell"
+                         paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                         rowsPerPageTemplate="5,10,15">
+                <p:ajax event="cellEdit" listener="#{adminPage.changeDataInTable}" />
+                <p:column headerText="№" >
+                    <h:outputText value="#{items.id}" />
+                </p:column>
+                <p:column headerText="ФИО" filterBy="#{items.fio}" filterMatchMode="contains" >
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{items.fio}" /></f:facet>
+                        <f:facet name="input"><p:inputText value="#{items.fio}" style="width:96%"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Дата рожд.(дд.мм.гггг)">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{items.birthDate}" /></f:facet>
+                        <f:facet name="input"><p:inputText value="#{items.birthDate}" style="width:96%"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Пол">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{items.sexType}" /></f:facet>
+                        <f:facet name="input"><p:inputText value="#{items.sexType}" style="width:96%"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Должность" filterBy="#{items.dolzhnost}" filterMatchMode="contains" >
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{items.dolzhnost}" /></f:facet>
+                        <f:facet name="input"><p:inputText value="#{items.dolzhnost}" style="width:96%"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Отдел" filterBy="#{items.otdel}" filterMatchMode="contains" >
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{items.otdel}" /></f:facet>
+                        <f:facet name="input"><p:inputText value="#{items.otdel}" style="width:96%"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Телефон">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{items.phone}" /></f:facet>
+                        <f:facet name="input"><p:inputText value="#{items.phone}" style="width:96%"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Образование" filterBy="#{items.education}" filterMatchMode="contains" >
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{items.education}" /></f:facet>
+                        <f:facet name="input"><p:inputText value="#{items.education}" style="width:96%"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Тема повыш. квал." filterBy="#{items.theme}" filterMatchMode="contains" >
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{items.theme}" /></f:facet>
+                        <f:facet name="input"><p:inputText value="#{items.theme}" style="width:96%"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Срок. обуч">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{items.educationLongTyme}" /></f:facet>
+                        <f:facet name="input"><p:inputText value="#{items.educationLongTyme}" style="width:96%"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Сумма" filterBy="#{items.price}" filterMatchMode="contains" >
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{items.price}" /></f:facet>
+                        <f:facet name="input"><p:inputText value="#{items.price}" style="width:96%"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Уч. заведение для повыш.квал." filterBy="#{items.workerForEduGrow}" filterMatchMode="contains" >
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{items.workerForEduGrow}" /></f:facet>
+                        <f:facet name="input"><p:inputText value="#{items.workerForEduGrow}" style="width:96%"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Дата пост. на предприятие">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{items.studentGetDate}" /></f:facet>
+                        <f:facet name="input"><p:inputText value="#{items.studentGetDate}" style="width:96%"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Курс">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{items.studentKurs}" /></f:facet>
+                        <f:facet name="input"><p:inputText value="#{items.studentKurs}" style="width:96%"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Специальность">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{items.studentspeciality}" /></f:facet>
+                        <f:facet name="input"><p:inputText value="#{items.studentspeciality}" style="width:96%"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+                <p:column headerText="Дата оконч. ВУЗа">
+                    <p:cellEditor>
+                        <f:facet name="output"><h:outputText value="#{items.studentLeaveUnDate}" /></f:facet>
+                        <f:facet name="input"><p:inputText value="#{items.studentLeaveUnDate}" style="width:96%"/></f:facet>
+                    </p:cellEditor>
+                </p:column>
+            </p:dataTable>
+            <h:commandLink id="pdf">
+                <img src="pdf-icon.png" width="32px" height="32px"/>
+                <p:dataExporter type="pdf" target="persontable" fileName="persons" />
+            </h:commandLink>
+            <h:commandLink id="xls">
+                <img src="excel-icon.png" width="32px" height="32px"/>
+                <p:dataExporter type="xls" target="persontable" fileName="persons" />
+            </h:commandLink>
+        </h:form>
+
+        <h:form style="margin-top: 50px">
+            <p:dataTable  id="eventsDT" var="item" value="#{adminPage.usersDataList}" 
+                          emptyMessage="Данных нет"
+                          rows="5"
+                          paginator="true"
+                          editable="true"
+                          editMode="cell"
+                          rowStyleClass="#{item.count le 0 ? 'red' : item.count le 5 ? 'blue' : 'green'}"
+                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                          rowsPerPageTemplate="5,10,15">
+                <f:facet name="header">
+                    Актуализация документов
+                </f:facet>
+
+                <p:column headerText="Номер">
+                    <h:outputText value="#{item.user.id}" />
+                </p:column>
+                <p:column headerText="ФИО">
+                    <h:outputText value="#{item.user.fio}" />
+                </p:column>
+                <p:column headerText="Отдел">
+                    <h:outputText value="#{item.user.otdel}" />
+                </p:column>
+                <p:column headerText="Заполнено">
+                    <h:outputText value="#{item.count} / 6"  />
+                </p:column>
+
+            </p:dataTable>
         </h:form>
     </h:body>
 </html>
