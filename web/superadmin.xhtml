@@ -31,6 +31,9 @@
                 <p:column headerText="ФИО">
                     <h:outputText value="#{item.user.fio}" />
                 </p:column>
+                <p:column headerText="Отдел">
+                    <h:outputText value="#{item.user.otdel}" />
+                </p:column>
                 <p:column headerText="Заполнено">
                     <h:outputText value="#{item.count} / 6" style="color: #{item.color}" />
                 </p:column>

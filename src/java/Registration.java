@@ -14,6 +14,7 @@ public class Registration {
     String login;
     String pass;
     String fio;
+    String otdel;
     String userType = UserType.REGISTRED.toString();
 
     public void doReg(){
@@ -24,6 +25,7 @@ public class Registration {
             user.setPass(pass);
             user.setUserType(userType);
             user.setFio(fio);
+            user.setOtdel(otdel);
             UserServiceImpl userService = new UserServiceImpl();
             if(userService.addUser(user)){
                 FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Успех", "авторизируйтесь через главную страницу");
@@ -66,6 +68,14 @@ public class Registration {
 
     public void setFio(String fio) {
         this.fio = fio;
+    }
+
+    public String getOtdel() {
+        return otdel;
+    }
+
+    public void setOtdel(String otdel) {
+        this.otdel = otdel;
     }
     
     

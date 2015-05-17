@@ -23,6 +23,9 @@
                     <p:inputText value="#{registration.fio}" style="margin-right:10px" placeholder="ФИО"  >
                         <p:ajax />
                     </p:inputText>
+                    <p:inputText value="#{registration.otdel}" style="margin-right:10px" placeholder="Отдел"  >
+                        <p:ajax />
+                    </p:inputText>
                     <p:commandButton update=":mainform:messages" action="#{registration.doReg()}" value="Регестрация" />
                     
                 </p:panelGrid>

@@ -18,7 +18,7 @@ public class UsersData{
     List<App4> app4List;
     List<App5> app5List;
     List<App6> app6List;
-    String color="black";
+    String color="red";
     
     public UsersData(Users user, List<App1> app1List, List<App2> app2List, List<App3> app3List, List<App4> app4List, List<App5> app5List, List<App6> app6List) {
         this.user = user;
@@ -53,7 +53,8 @@ public class UsersData{
                 countres++;
         if(countres==6)
             color="green";
-        else color = "red";
+        else if(countres>0) color = "blue";
+        
         return countres.toString();
     }
     

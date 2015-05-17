@@ -30,6 +30,9 @@ public class Users implements Serializable {
     @Column(name="fio")
     String fio;
     
+    @Column(name="otdel")
+    String otdel;
+    
     public String getLogin() {
         return login;
     }
@@ -68,6 +71,14 @@ public class Users implements Serializable {
 
     public void setFio(String fio) {
         this.fio = fio;
+    }
+
+    public String getOtdel() {
+        return otdel;
+    }
+
+    public void setOtdel(String otdel) {
+        this.otdel = otdel;
     }
 
     
