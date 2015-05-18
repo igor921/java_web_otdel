@@ -98,17 +98,54 @@
 
                 <p:commandButton update="persontableform:persontable" value="Добавить данные" actionListener="#{adminPage.add()}"/>
             </h:panelGrid>
-            <h:panelGrid columns="5" style="margin-bottom: 20px; margin-left: 40px; box-shadow: 3px 4px 22px 3px rgba(19,98,158,1); display: inline-block">
+            <h:panelGrid columns="5" style="width: 55%; margin-bottom: 20px; margin-left: 20px; box-shadow: 3px 4px 22px 3px rgba(19,98,158,1); display: inline-block">
                 <f:facet name="header" ><p:outputLabel  value="ФИЛЬТРЫ" /></f:facet>
+                <h:outputLabel value="Возраст от" />
+                <p:spinner  >
+                    <p:ajax process="@this" />
+                </p:spinner>
+                <h:outputLabel value="до" />
+                <p:spinner  >
+                    <p:ajax process="@this" />
+                </p:spinner>
+                <h:commandButton value="Применить" />
+                
+                <h:outputLabel value="Срок обуч. от" />
+                <h:inputText  >
+                    <p:ajax />
+                </h:inputText>
+                <h:outputLabel value="до" />
+                <h:inputText  >
+                    <p:ajax />
+                </h:inputText>
+                <h:commandButton value="Применить" />
+                
+                <h:outputLabel value="Сумма от" />
+                <p:spinner  >
+                    <p:ajax process="@this" />
+                </p:spinner>
+                <h:outputLabel value="до" />
+                <p:spinner  >
+                    <p:ajax process="@this" />
+                </p:spinner>
+                <h:commandButton value="Применить" />
             </h:panelGrid>
         </h:form>
         <h:form id="persontableform" style="font-size: 11px" >
-            <p:dataTable id="persontable" emptyMessage="Данных нет" var="items" value="#{adminPage.persons}" rows="5"
+            <p:dataTable id="persontable" 
+                         emptyMessage="Данных нет" 
+                         var="items" 
+                         value="#{adminPage.persons}" 
+                         rows="5"
                          paginator="true"
                          editable="true"
-                         editMode="cell"
+                         editMode="cell" 
                          paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                          rowsPerPageTemplate="5,10,15">
+                <f:facet name="header">
+                    <p:commandButton id="toggler" type="button" value="Columns" style="float:right" icon="ui-icon-calculator" />
+                    <p:columnToggler datasource="persontable" trigger="toggler" />
+                </f:facet>
                 <p:ajax event="cellEdit" listener="#{adminPage.changeDataInTable}" />
                 <p:column headerText="№" >
                     <h:outputText value="#{items.id}" />

@@ -65,6 +65,17 @@ public class AdminPage implements Serializable{
         }
     }
     
+    public void doFilter(int index){
+        switch(index){
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                break; 
+        }
+    }
+    
     public void changeDataInTable(CellEditEvent event) {
         personService.saveAll(persons);
     }
