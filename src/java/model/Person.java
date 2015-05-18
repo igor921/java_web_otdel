@@ -219,4 +219,8 @@ public class Person implements Serializable {
         this.dolzhnost = dolzhnost;
     }
     
+    public  int getYear(){
+        String year = String.valueOf(birthDate.charAt(birthDate.length()-4))+String.valueOf(birthDate.charAt(birthDate.length()-3))+String.valueOf(birthDate.charAt(birthDate.length()-2))+String.valueOf(birthDate.charAt(birthDate.length()-1));
+        return Integer.parseInt(year);
+    }
 }

@@ -98,37 +98,31 @@
 
                 <p:commandButton update="persontableform:persontable" value="Добавить данные" actionListener="#{adminPage.add()}"/>
             </h:panelGrid>
-            <h:panelGrid columns="5" style="width: 55%; margin-bottom: 20px; margin-left: 20px; box-shadow: 3px 4px 22px 3px rgba(19,98,158,1); display: inline-block">
+            <h:panelGrid columns="2" style="margin-bottom: 20px; margin-left: 20px; box-shadow: 3px 4px 22px 3px rgba(19,98,158,1); display: inline-block">
                 <f:facet name="header" ><p:outputLabel  value="ФИЛЬТРЫ" /></f:facet>
                 <h:outputLabel value="Возраст от" />
-                <p:spinner  >
+                <p:spinner value="#{adminPage.beginOld}" >
                     <p:ajax process="@this" />
                 </p:spinner>
                 <h:outputLabel value="до" />
-                <p:spinner  >
+                <p:spinner value="#{adminPage.endOld}" >
                     <p:ajax process="@this" />
                 </p:spinner>
-                <h:commandButton value="Применить" />
-                
-                <h:outputLabel value="Срок обуч. от" />
-                <h:inputText  >
-                    <p:ajax />
-                </h:inputText>
-                <h:outputLabel value="до" />
-                <h:inputText  >
-                    <p:ajax />
-                </h:inputText>
-                <h:commandButton value="Применить" />
+                <h:outputText value="" />
+                <p:commandButton value="Применить" actionListener="#{adminPage.doFilter(1)}" update="persontableform:persontable" />
                 
                 <h:outputLabel value="Сумма от" />
-                <p:spinner  >
+                <p:spinner  value="#{adminPage.beginSum}">
                     <p:ajax process="@this" />
                 </p:spinner>
                 <h:outputLabel value="до" />
-                <p:spinner  >
+                <p:spinner value="#{adminPage.endSum}"  >
                     <p:ajax process="@this" />
                 </p:spinner>
-                <h:commandButton value="Применить" />
+                 <h:outputText value="" />
+                <p:commandButton value="Применить" actionListener="#{adminPage.doFilter(2)}" update="persontableform:persontable"/>
+                <h:outputText value="" />
+                <p:commandButton value="Сбросить" actionListener="#{adminPage.doFilter(3)}" update="persontableform:persontable"/>
             </h:panelGrid>
         </h:form>
         <h:form id="persontableform" style="font-size: 11px" >

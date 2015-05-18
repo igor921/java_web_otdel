@@ -3,6 +3,7 @@ import User.UserData;
 import User.UsersData;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -42,7 +43,10 @@ public class AdminPage implements Serializable{
     Person selectesPerson;
     UserSevice userService = new UserServiceImpl();
     List<UsersData> usersDataList;
-    
+    int beginOld;
+    int endOld;
+    int beginSum;
+    int endSum;
 
     @PostConstruct
     public void init(){
@@ -68,10 +72,25 @@ public class AdminPage implements Serializable{
     public void doFilter(int index){
         switch(index){
             case 1:
+                List<Person> tmppersons = personService.getallAppsByOwner(userData.getId());
+                int year = new Date().getYear()+1900;
+                persons.clear();
+                for (Person tmpperson : tmppersons) {
+                    if((year-tmpperson.getYear())>=beginOld && (year-tmpperson.getYear())<=endOld )
+                        persons.add(tmpperson);
+                }
+                
                 break;
             case 2:
+                tmppersons = personService.getallAppsByOwner(userData.getId());
+                persons.clear();
+                for (Person tmpperson : tmppersons) {
+                    if(tmpperson.getPrice()>=beginSum && tmpperson.getPrice()<=endSum )
+                        persons.add(tmpperson);
+                }
                 break;
             case 3:
+                persons = personService.getallAppsByOwner(userData.getId());
                 break; 
         }
     }
@@ -87,6 +106,38 @@ public class AdminPage implements Serializable{
         person.setOwnerid(userData.getId());
     }
 
+    public int getBeginSum() {
+        return beginSum;
+    }
+
+    public void setBeginSum(int beginSum) {
+        this.beginSum = beginSum;
+    }
+
+    public int getEndSum() {
+        return endSum;
+    }
+
+    public void setEndSum(int endSum) {
+        this.endSum = endSum;
+    }
+    
+    public int getBeginOld() {
+        return beginOld;
+    }
+
+    public void setBeginOld(int beginOld) {
+        this.beginOld = beginOld;
+    }
+
+    public int getEndOld() {
+        return endOld;
+    }
+
+    public void setEndOld(int endOld) {
+        this.endOld = endOld;
+    }
+    
     public Map<String, String> getPersonTypes() {
         return personTypes;
     }
