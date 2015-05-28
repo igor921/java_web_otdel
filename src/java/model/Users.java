@@ -33,6 +33,17 @@ public class Users implements Serializable {
     @Column(name="otdel")
     String otdel;
     
+    @Column(name="dolzhnost")
+    String dolzhnost;
+
+    public String getDolzhnost() {
+        return dolzhnost;
+    }
+
+    public void setDolzhnost(String dolzhnost) {
+        this.dolzhnost = dolzhnost;
+    }
+    
     public String getLogin() {
         return login;
     }

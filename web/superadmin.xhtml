@@ -39,7 +39,7 @@
                     Данные о пользователях
                 </f:facet>
                 <p:ajax event="rowSelect" listener="#{superAdminPage.onRowSelect}" update=":userDetail :according" />
-
+<!--                <p:ajax event="cellEdit" listener="#{superAdminPage.onCellEdit}" update=":usertableform:messages" />-->
                 <p:column headerText="Номер">
                     <h:outputText value="#{item.user.id}" />
                 </p:column>
@@ -49,6 +49,16 @@
                 <p:column headerText="Отдел">
                     <h:outputText value="#{item.user.otdel}" />
                 </p:column>
+                <!--                <p:column headerText="Тип пользователя">
+                                    <p:cellEditor>
+                                        <f:facet name="output"><h:outputText value="#{item.user.userType}" /></f:facet>
+                                        <f:facet name="input">
+                                            <h:selectOneMenu value="#{item.user.userType}" style="width:100%">
+                                                <f:selectItems value="#{superAdminPage.userTypes}" var="man" itemLabel="#{man}" itemValue="#{man}" />
+                                            </h:selectOneMenu>
+                                        </f:facet>
+                                    </p:cellEditor>
+                                </p:column>-->
                 <p:column headerText="Заполнено">
                     <h:outputText value="#{item.count} / 6" />
                 </p:column>
@@ -63,7 +73,7 @@
         </h:form>
         <p:accordionPanel id="according">
             <p:tab title="Повышение квалификации и техническую учебу по подразделению">
-                
+
                 <h:form id="app1tableform">
                     <p:commandButton update="app1Table" actionListener="#{superAdminPage.clearTable(1)}" value="Очистить таблицу" />
                     <p:dataTable id="app1Table" emptyMessage="Данных нет" var="items" value="#{superAdminPage.selectedUser.app1List}" rows="5"
@@ -109,7 +119,7 @@
                 </h:form>
             </p:tab>
             <p:tab title="Повышения квалификации руководящих работников и специалистов">
-                
+
                 <h:form id="app2tableform">
                     <p:commandButton update="app2Table" actionListener="#{superAdminPage.clearTable(2)}" value="Очистить таблицу" />
                     <p:dataTable id="app2Table" emptyMessage="Данных нет" var="items" value="#{superAdminPage.selectedUser.app2List}" rows="5"
@@ -193,8 +203,8 @@
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                  rowsPerPageTemplate="5,10,15">
                         <p:ajax event="cellEdit" listener="#{superAdminPage.changeDataInTable3}" />
-                        
-                        
+
+
                         <p:columnGroup type="header">
                             <p:row>
                                 <p:column rowspan="2" headerText="№" />
@@ -213,10 +223,10 @@
                                 <p:column headerText="до 18"/>
                                 <p:column headerText="до 30"/>                           
                             </p:row>
-                            
-                            
+
+
                         </p:columnGroup>
-                        
+
                         <p:column  >
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText value="#{items.id}" /></f:facet>
@@ -251,42 +261,42 @@
                                 <f:facet name="input"><p:inputText value="#{items.seconddolzhost}" style="width:96%"/></f:facet>
                             </p:cellEditor>
                         </p:column>
-                        
+
                         <p:column >
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText value="#{items.drygieOrganiz}" /></f:facet>
                                 <f:facet name="input"><p:inputText value="#{items.drygieOrganiz}" style="width:96%"/></f:facet>
                             </p:cellEditor>
                         </p:column>
-                        
+
                         <p:column >
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText value="#{items.povishenieRazryadov}" /></f:facet>
                                 <f:facet name="input"><p:inputText value="#{items.povishenieRazryadov}" style="width:96%"/></f:facet>
                             </p:cellEditor>
                         </p:column>
-                        
+
                         <p:column >
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText value="#{items.alls}" /></f:facet>
                                 <f:facet name="input"><p:inputText value="#{items.alls}" style="width:96%"/></f:facet>
                             </p:cellEditor>
                         </p:column>
-                        
+
                         <p:column >
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText value="#{items.women}" /></f:facet>
                                 <f:facet name="input"><p:inputText value="#{items.women}" style="width:96%"/></f:facet>
                             </p:cellEditor>
                         </p:column>
-                        
+
                         <p:column >
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText value="#{items.eightennBelow}" /></f:facet>
                                 <f:facet name="input"><p:inputText value="#{items.eightennBelow}" style="width:96%"/></f:facet>
                             </p:cellEditor>
                         </p:column>
-                        
+
                         <p:column >
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText value="#{items.thirtyBelow}" /></f:facet>
@@ -308,8 +318,8 @@
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                  rowsPerPageTemplate="5,10,15">
                         <p:ajax event="cellEdit" listener="#{superAdminPage.changeDataInTable4}" />
-                        
-                        
+
+
                         <p:columnGroup type="header">
                             <p:row>
                                 <p:column rowspan="2" headerText="№" />
@@ -330,10 +340,10 @@
                                 <p:column headerText="Месяц и год окончания ВУЗа"/>
                                 <p:column headerText="Тип обучения"/>
                             </p:row>
-                            
-                            
+
+
                         </p:columnGroup>
-                        
+
                         <p:column  >
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText value="#{items.id}" /></f:facet>
@@ -354,84 +364,84 @@
                                 <f:facet name="input"><p:inputText value="#{items.tabNum}" style="width:96%"/></f:facet>
                             </p:cellEditor>
                         </p:column>
-                        
+
                         <p:column >
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText value="#{items.dolzhnost}" /></f:facet>
                                 <f:facet name="input"><p:inputText value="#{items.dolzhnost}" style="width:96%"/></f:facet>
                             </p:cellEditor>
                         </p:column>
-                        
+
                         <p:column >
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText value="#{items.birthDate}" /></f:facet>
                                 <f:facet name="input"><p:inputText value="#{items.birthDate}" style="width:96%"/></f:facet>
                             </p:cellEditor>
                         </p:column>
-                        
+
                         <p:column >
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText value="#{items.getsDate}" /></f:facet>
                                 <f:facet name="input"><p:inputText value="#{items.getsDate}" style="width:96%"/></f:facet>
                             </p:cellEditor>
                         </p:column>
-                        
+
                         <p:column >
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText value="#{items.universityName}" /></f:facet>
                                 <f:facet name="input"><p:inputText value="#{items.universityName}" style="width:96%"/></f:facet>
                             </p:cellEditor>
                         </p:column>
-                        
+
                         <p:column >
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText value="#{items.universitygetDate}" /></f:facet>
                                 <f:facet name="input"><p:inputText value="#{items.universitygetDate}" style="width:96%"/></f:facet>
                             </p:cellEditor>
                         </p:column>
-                        
+
                         <p:column >
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText value="#{items.kurs}" /></f:facet>
                                 <f:facet name="input"><p:inputText value="#{items.kurs}" style="width:96%"/></f:facet>
                             </p:cellEditor>
                         </p:column>
-                        
+
                         <p:column >
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText value="#{items.speciality}" /></f:facet>
                                 <f:facet name="input"><p:inputText value="#{items.speciality}" style="width:96%"/></f:facet>
                             </p:cellEditor>
                         </p:column>
-                        
+
                         <p:column >
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText value="#{items.someinfo}" /></f:facet>
                                 <f:facet name="input"><p:inputText value="#{items.someinfo}" style="width:96%"/></f:facet>
                             </p:cellEditor>
                         </p:column>
-                        
+
                         <p:column >
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText value="#{items.universityEndDate}" /></f:facet>
                                 <f:facet name="input"><p:inputText value="#{items.universityEndDate}" style="width:96%"/></f:facet>
                             </p:cellEditor>
                         </p:column>
-                        
+
                         <p:column >
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText value="#{items.eduType}" /></f:facet>
                                 <f:facet name="input"><p:inputText value="#{items.eduType}" style="width:96%"/></f:facet>
                             </p:cellEditor>
                         </p:column>
-                        
+
                         <p:column >
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText value="#{items.phone}" /></f:facet>
                                 <f:facet name="input"><p:inputText value="#{items.phone}" style="width:96%"/></f:facet>
                             </p:cellEditor>
                         </p:column>
-                        
+
                     </p:dataTable>
 
                 </h:form>
@@ -446,7 +456,7 @@
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                  rowsPerPageTemplate="5,10,15">
                         <p:ajax event="cellEdit" listener="#{superAdminPage.changeDataInTable5}" />
-                        
+
                         <p:column headerText="№">
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText value="#{items.id}" /></f:facet>
@@ -484,7 +494,7 @@
                                 <f:facet name="input"><p:inputText  value="#{items.educationMonthDay}" style="width:96%"/></f:facet>
                             </p:cellEditor>
                         </p:column>
-                        
+
                         <p:column headerText="Затраченные средства">
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText value="#{items.price}" /></f:facet>
@@ -505,7 +515,7 @@
                                  paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
                                  rowsPerPageTemplate="5,10,15">
                         <p:ajax event="cellEdit" listener="#{superAdminPage.changeDataInTable6}" />
-                        
+
                         <p:column headerText="№">
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText value="#{items.id}" /></f:facet>
@@ -531,32 +541,68 @@
                                 <f:facet name="input"><p:inputText  value="#{items.education}" style="width:96%"/></f:facet>
                             </p:cellEditor>
                         </p:column>
-                        
+
                         <p:column headerText="Специальность, шифр">
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText value="#{items.specialityShifr}" /></f:facet>
                                 <f:facet name="input"><p:inputText  value="#{items.specialityShifr}" style="width:96%"/></f:facet>
                             </p:cellEditor>
                         </p:column>
-                        
+
                         <p:column headerText="Дата поступления">
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText value="#{items.getDate}" /></f:facet>
                                 <f:facet name="input"><p:inputText  value="#{items.getDate}" style="width:96%"/></f:facet>
                             </p:cellEditor>
                         </p:column>
-                        
+
                         <p:column headerText="Год окончания">
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText value="#{items.leaveYear}" /></f:facet>
                                 <f:facet name="input"><p:inputText  value="#{items.leaveYear}" style="width:96%"/></f:facet>
                             </p:cellEditor>
                         </p:column>
-                        
+
                         <p:column headerText="Форма обучения">
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText value="#{items.educationForm}" /></f:facet>
                                 <f:facet name="input"><p:inputText  value="#{items.educationForm}" style="width:96%"/></f:facet>
+                            </p:cellEditor>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </p:tab>
+            <p:tab title="Управление правамипользователей" >
+                <h:form>
+                    <p:dataTable id="cars2" var="item" value="#{superAdminPage.usersPrava}" editable="true" editMode="cell" widgetVar="cellCars">
+                        <f:facet name="header">
+                            Пользователи
+                        </f:facet>
+
+                        <p:ajax event="cellEdit" listener="#{superAdminPage.onCellEdit(event)}" />
+
+                        <p:column headerText="ФИО">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText value="#{item.fio}" /></f:facet>
+                                <f:facet name="input"><p:inputText id="modelInput" value="#{item.fio}" style="width:96%"/></f:facet>
+                            </p:cellEditor>
+                        </p:column>
+
+                        <p:column headerText="Отдел">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText value="#{item.otdel}" /></f:facet>
+                                <f:facet name="input"><p:inputText value="#{item.otdel}" style="width:96%" label="Year"/></f:facet>
+                            </p:cellEditor>
+                        </p:column>
+
+                        <p:column headerText="Права">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText value="#{item.userType}" /></f:facet>
+                                <f:facet name="input">
+                                    <h:selectOneMenu value="#{item.userType}" style="width:100%">
+                                        <f:selectItems value="#{superAdminPage.userTypes}" var="man" itemLabel="#{man}" itemValue="#{man}" />
+                                    </h:selectOneMenu>
+                                </f:facet>
                             </p:cellEditor>
                         </p:column>
                     </p:dataTable>

@@ -28,6 +28,9 @@ public class ForLogin implements Serializable{
         Users user = service.login(userData.getLogin(), userData.getPass());
         if(user!=null)
         {
+            userData.setFio(user.getFio());
+            userData.setOtdel(user.getOtdel());
+            userData.setDolzhnost(user.getDolzhnost());
             switch(user.getUserType())
             {
                 case "REGISTRED":
@@ -44,6 +47,8 @@ public class ForLogin implements Serializable{
                     userData.setId(user.getId());
                     return "superadmin";
             }
+            
+            
             
         }
          FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_ERROR, "Ошибка", "Не распознана комбинация логина и пароля");

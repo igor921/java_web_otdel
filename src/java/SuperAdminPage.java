@@ -4,8 +4,10 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
+import javax.faces.context.FacesContext;
 import model.Users;
 import org.primefaces.event.CellEditEvent;
 import org.primefaces.event.SelectEvent;
@@ -30,10 +32,16 @@ public class SuperAdminPage implements Serializable {
     App5ServiceImpl app5service;
     App6ServiceImpl app6service;
     List<UsersData> usersDataList;
+    List<Users> usersPrava;
     UsersData selectedUser;
-
+    
+    String[] userTypes;
+    
     @PostConstruct
     public void init() {
+        this.userTypes = new String[2];
+        userTypes[0] = "REGISTRED";
+        userTypes[1] = "ADMIN";
         this.app1service = new App1ServiceImpl();
         this.app2service = new App2ServiceImpl();
         this.app3service = new App3ServiceImpl();
@@ -41,6 +49,10 @@ public class SuperAdminPage implements Serializable {
         this.app5service = new App5ServiceImpl();
         this.app6service = new App6ServiceImpl();
         this.usersDataList = new ArrayList<>();
+        usersPrava = userService.getAllRegistredUsers();
+        for (Users item : userService.getAdmin()) {
+            usersPrava.add(item);
+        }
         List<Users> users = userService.getAllRegistredUsers();
         for (Users user : users) {
             usersDataList.add(new UsersData(user, app1service.getallAppsByOwner(user.getId()), app2service.getallAppsByOwner(user.getId()), app3service.getallAppsByOwner(user.getId()),
@@ -77,6 +89,24 @@ public class SuperAdminPage implements Serializable {
         }
     }
 
+    public String[] getUserTypes() {
+        return userTypes;
+    }
+
+    public void onCellEdit(CellEditEvent event) {
+       userService.updAllUsers(usersPrava);
+    }
+
+    public List<Users> getUsersPrava() {
+        return usersPrava;
+    }
+
+    public void setUsersPrava(List<Users> usersPrava) {
+        this.usersPrava = usersPrava;
+    }
+    
+    
+    
     public void changeDataInTable(CellEditEvent event) {
         app1service.saveAll(selectedUser.getApp1List());
     }
