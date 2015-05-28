@@ -9,10 +9,52 @@
         <title>Главная</title>
     </h:head>
     <h:body>
+
         <h:form id="mainform">  
             <p:growl showDetail="true" id="messages"/>
             <ui:include src="WEB-INF/template/menu.xhtml" />
-            
+            <h:form>
+                <p:commandButton value="Сформировать" actionListener="#{otchetPage.buildReport()}" update="table1" />
+                <p:dataTable id="table1" var="item" value="#{otchetPage.table1}" sortBy="#{item.info}" >
+                    <f:facet name="header">
+                        I. Подготовка новых рабочих
+                    </f:facet>
+                    <p:column headerText="№" >
+                        <h:outputText value="#{item.id+1}" />
+                    </p:column>
+                    <p:column headerText="Специальность" >
+                        <h:outputText value="#{item.speciality}" />
+                    </p:column>
+                    <p:column headerText="Подразделение" >
+                        <h:outputText value="#{item.podrazdelenie}" />
+                    </p:column>
+                    <p:column headerText="Количество" >
+                        <h:outputText value="#{item.count}" />
+                    </p:column>
+                    <p:column headerText="Повышение разряда" >
+                        <h:outputText value="#{item.povishRazryad}" />
+                    </p:column>
+                    <p:column headerText="Срок" >
+                        <h:outputText value="#{item.srok}" />
+                    </p:column>
+                    <p:column headerText="Уч.заведение" >
+                        <h:outputText value="#{item.eduBuild}" />
+                    </p:column>
+                    <p:column headerText="Примечание" >
+                        <h:outputText value="#{item.info}" />
+                    </p:column>
+                    <p:summaryRow>
+                        <p:column colspan="3" style="text-align:right">
+                            <h:outputText value="Всего:" />
+                        </p:column>
+                        <p:column colspan="5">
+                            <h:outputText value="#{otchetPage.table1allCount}">
+
+                            </h:outputText>
+                        </p:column>
+                    </p:summaryRow>
+                </p:dataTable>
+            </h:form>
         </h:form>
     </h:body>
 </html>
