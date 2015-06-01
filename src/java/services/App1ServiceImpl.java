@@ -21,8 +21,12 @@ public class App1ServiceImpl implements App1Service {
             session.getTransaction().commit();
 
         } catch (Exception e) {
+            if(session!=null)
+                session.close();
             return false;
         }
+        if(session!=null)
+                session.close();
         return true;
     }
 
@@ -37,8 +41,12 @@ public class App1ServiceImpl implements App1Service {
             session.getTransaction().commit();
 
         } catch (Exception e) {
+            if(session!=null)
+                session.close();
             return false;
         }
+        if(session!=null)
+                session.close();
         return true;
     }
 
@@ -56,7 +64,7 @@ public class App1ServiceImpl implements App1Service {
         } finally {
 
             if (session != null && session.isOpen()) {
-                //session.close();
+                session.close();
             }
         }
 
@@ -77,7 +85,7 @@ public class App1ServiceImpl implements App1Service {
         } finally {
 
             if (session != null && session.isOpen()) {
-                //session.close();
+                session.close();
             }
         }
 
@@ -96,8 +104,12 @@ public class App1ServiceImpl implements App1Service {
             session.getTransaction().commit();
 
         } catch (Exception e) {
+            if(session!=null)
+                session.close();
             return false;
         }
+        if(session!=null)
+                session.close();
         return true;
     }
 

@@ -23,14 +23,6 @@ public class App2 implements Serializable {
     
     @Column(name="ownerid")
     int ownerid;
-
-    public int getOwnerid() {
-        return ownerid;
-    }
-
-    public void setOwnerid(int ownerid) {
-        this.ownerid = ownerid;
-    }
     
     @Column(name="dolzhTabNumber")
     String dolzhTabNumber;
@@ -52,7 +44,26 @@ public class App2 implements Serializable {
     
     @Column(name = "monthDegree")
     String monthDegree;
+    
+    @Column(name = "podrazdelenie")
+    String podrazdelenie;
 
+    public String getPodrazdelenie() {
+        return podrazdelenie;
+    }
+
+    public void setPodrazdelenie(String podrazdelenie) {
+        this.podrazdelenie = podrazdelenie;
+    }
+    
+    public int getOwnerid() {
+        return ownerid;
+    }
+
+    public void setOwnerid(int ownerid) {
+        this.ownerid = ownerid;
+    }
+    
     public String getFio() {
         return fio;
     }

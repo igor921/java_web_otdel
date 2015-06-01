@@ -9,16 +9,19 @@
         <title>Главная</title>
         <style>
             .red{
-                background-color: red;
-                color: white;
+                background: #FF7F50;
+                background-color: #FF7F50;
+                color: black;
             }
             .blue{
-                background-color: blue;
-                color: white;
+                background: #B0E2FF;
+                background-color: #B0E2FF;
+                color: black;
             }
             .green{
-                background-color: green;
-                color: white;
+                background: #54FF9F;
+                background-color: #54FF9F;
+                color: black;
             }
         </style>
     </h:head>
@@ -572,7 +575,7 @@
                     </p:dataTable>
                 </h:form>
             </p:tab>
-            <p:tab title="Управление правамипользователей" >
+            <p:tab titleStyle="background:#828282; color:white; padding:30px" title="Управление правамипользователей" >
                 <h:form>
                     <p:dataTable id="cars2" var="item" value="#{superAdminPage.usersPrava}" editable="true" editMode="cell" widgetVar="cellCars">
                         <f:facet name="header">

@@ -12,20 +12,32 @@
         <h:form id="mainform">  
             <p:growl showDetail="true" id="messages"/>
             <ui:include src="WEB-INF/template/menu.xhtml" />
-            <h:form>
-                <p:panelGrid style="text-align: center" columns="1" layout="grid">  
+            <h:form id="f">
+                <p:panelGrid id="panel" style="text-align: center" columns="1" layout="grid">  
                     <p:inputText value="#{forLogin.userData.login}" style="margin-right:10px" placeholder="Логин"  >
                         <p:ajax />
                     </p:inputText>
                     <p:password value="#{forLogin.userData.pass}"  style="margin-right:10px" placeholder="Пароль">
                         <p:ajax />
                     </p:password>
-                    <p:commandButton update=":mainform:messages" action="#{forLogin.login()}" value="Вход" />
+                    <p:commandButton  oncomplete="ends();" onclick="beg();"  update=":mainform:messages" action="#{forLogin.login()}" value="Вход" />
                     <p:commandLink action="register" value="Регистрация" style="color: blue; font-size: 12px" />
+                    <img id="progress" style="visibility: hidden"  src="ajax_loader_red_512.gif" width="100" height="100" />
                 </p:panelGrid>
                 
             </h:form>
         </h:form>
+        <script>
+            function beg(){
+                var element = document.getElementById("progress");
+                element.style.visibility = "visible";
+            }
+            
+            function ends(){
+                var element = document.getElementById("progress");
+                element.style.visibility = "hidden";
+            }
+        </script>
     </h:body>
 </html>
 

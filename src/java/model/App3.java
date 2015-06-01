@@ -51,6 +51,17 @@ public class App3 implements Serializable {
     @Column(name="thirtyBelow")
     String thirtyBelow;
     
+    @Column(name = "podrazdelenie")
+    String podrazdelenie;
+
+    public String getPodrazdelenie() {
+        return podrazdelenie;
+    }
+
+    public void setPodrazdelenie(String podrazdelenie) {
+        this.podrazdelenie = podrazdelenie;
+    }
+    
     public int getId() {
         return id;
     }

@@ -22,8 +22,12 @@ public class App2ServiceImpl implements App2Service{
                 session.getTransaction().commit();
                
             } catch (Exception e) {
+                if(session!=null)
+                session.close();
                 return false;
             }
+            if(session!=null)
+                session.close();
              return true;
     }
 
@@ -38,8 +42,12 @@ public class App2ServiceImpl implements App2Service{
             session.getTransaction().commit();
 
         } catch (Exception e) {
+            if(session!=null)
+                session.close();
             return false;
         }
+        if(session!=null)
+                session.close();
         return true;
     }
     
@@ -57,7 +65,7 @@ public class App2ServiceImpl implements App2Service{
             } finally {
                 
                 if (session != null && session.isOpen()) {
-                    //session.close();
+                    session.close();
                 }
             }
             
@@ -78,7 +86,7 @@ public class App2ServiceImpl implements App2Service{
             } finally {
                 
                 if (session != null && session.isOpen()) {
-                    //session.close();
+                    session.close();
                 }
             }
             
@@ -97,8 +105,12 @@ public class App2ServiceImpl implements App2Service{
                 session.getTransaction().commit();
                
             } catch (Exception e) {
+                if(session!=null)
+                session.close();
                 return false;
             }
+            if(session!=null)
+                session.close();
              return true;
     }
     

@@ -9,16 +9,19 @@
         <title>Главная</title>
         <style>
             .red{
-                background-color: red;
-                color: white;
+                background: #FF7F50;
+                background-color: #FF7F50;
+                color: black;
             }
             .blue{
-                background-color: blue;
-                color: white;
+                background: #B0E2FF;
+                background-color: #B0E2FF;
+                color: black;
             }
             .green{
-                background-color: green;
-                color: white;
+                background: #54FF9F;
+                background-color: #54FF9F;
+                color: black;
             }
         </style>
     </h:head>
@@ -26,9 +29,9 @@
 
         <p:growl id="messages"/>
         <ui:include src="WEB-INF/template/menu.xhtml" />
-        <p:link href="otchet.xhtml" value="Итоговій отчёт" />
+        <p:link href="/pages/otchet.xhtml" value="Итоговый отчёт" />
         <h:form id="adduserform">
-            <h:panelGrid columns="2" style="margin-bottom: 20px;  box-shadow: 3px 4px 22px 3px rgba(19,98,158,1); display: inline-block">
+            <h:panelGrid columns="2" style="margin-bottom: 20px;  box-shadow: 3px 4px 22px 3px rgba(173,154,31,1); display: inline-block">
                 <h:outputText value="ФИО: " />
                 <h:inputText value="#{adminPage.person.fio}" >
                     <p:ajax />
@@ -99,7 +102,7 @@
 
                 <p:commandButton update="persontableform:persontable" value="Добавить данные" actionListener="#{adminPage.add()}"/>
             </h:panelGrid>
-            <h:panelGrid columns="2" style="margin-bottom: 20px; margin-left: 20px; box-shadow: 3px 4px 22px 3px rgba(19,98,158,1); display: inline-block">
+            <h:panelGrid columns="2" style="margin-bottom: 20px; margin-left: 20px; box-shadow: 3px 4px 22px 3px rgba(173,154,31,1); display: inline-block">
                 <f:facet name="header" ><p:outputLabel  value="ФИЛЬТРЫ" /></f:facet>
                 <h:outputLabel value="Возраст от" />
                 <p:spinner value="#{adminPage.beginOld}" >

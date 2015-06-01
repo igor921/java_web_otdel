@@ -15,7 +15,7 @@
         <p:accordionPanel id="according">
             <p:tab title="Повышение квалификации и техническую учебу по подразделению">
                 <h:form id="app1addataform">
-                    <h:panelGrid columns="2" style="margin-bottom: 20px; box-shadow: 3px 4px 22px 3px rgba(19,98,158,1);">
+                    <h:panelGrid columns="2" style="margin-bottom: 20px; box-shadow: 3px 4px 22px 3px rgba(173,154,31,1);">
                         <h:outputText value="ФИО: " />
                         <h:inputText value="#{userPage.app1.fio}" >
                             <p:ajax />
@@ -53,6 +53,7 @@
                                 <f:facet name="input"><p:inputText value="#{items.fio}" style="width:96%"/></f:facet>
                             </p:cellEditor>
                         </p:column>
+                        
                         <p:column headerText="Должность (категория, разряд)">
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText value="#{items.dolzhnost}" /></f:facet>
@@ -84,7 +85,7 @@
             </p:tab>
             <p:tab title="Повышения квалификации руководящих работников и специалистов">
                 <h:form id="app2addataform">
-                    <h:panelGrid columns="2" style="margin-bottom: 20px; box-shadow: 3px 4px 22px 3px rgba(19,98,158,1);">
+                    <h:panelGrid columns="2" style="margin-bottom: 20px; box-shadow: 3px 4px 22px 3px rgba(173,154,31,1);">
                         <h:outputText value="ФИО: " />
                         <h:inputText value="#{userPage.app2.fio}" >
                             <p:ajax />
@@ -124,6 +125,11 @@
                         <h:inputText value="#{userPage.app2.monthDegree}" >
                             <p:ajax />
                         </h:inputText>
+                        
+                        <h:outputText value="Подразделение: " />
+                        <h:inputText value="#{userPage.app2.podrazdelenie}" >
+                            <p:ajax />
+                        </h:inputText>
 
                         <p:commandButton update="according:app2tableform:app2Table" value="Добавить данные" actionListener="#{userPage.add(2)}"/>
                     </h:panelGrid>
@@ -146,6 +152,12 @@
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText value="#{items.fio}" /></f:facet>
                                 <f:facet name="input"><p:inputText value="#{items.fio}" style="width:96%"/></f:facet>
+                            </p:cellEditor>
+                        </p:column>
+                        <p:column headerText="Подразделение">
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText value="#{items.podrazdelenie}" /></f:facet>
+                                <f:facet name="input"><p:inputText value="#{items.podrazdelenie}" style="width:96%"/></f:facet>
                             </p:cellEditor>
                         </p:column>
                         <p:column headerText="Должность">
@@ -191,8 +203,8 @@
                         </p:column>
                         <p:column headerText="Время повыш. квал">
                             <p:cellEditor>
-                                <f:facet name="output"><h:outputText value="#{items.qualificationDegreeBuild}" /></f:facet>
-                                <f:facet name="input"><p:inputText value="#{items.qualificationDegreeBuild}" style="width:96%"/></f:facet>
+                                <f:facet name="output"><h:outputText value="#{items.monthDegree}" /></f:facet>
+                                <f:facet name="input"><p:inputText value="#{items.monthDegree}" style="width:96%"/></f:facet>
                             </p:cellEditor>
                         </p:column>
 
@@ -202,7 +214,7 @@
             </p:tab>
             <p:tab title="Подготовки и повышения квалификации рабочих цеха">
                 <h:form id="app3addataform">
-                    <h:panelGrid columns="2" style="margin-bottom: 20px; box-shadow: 3px 4px 22px 3px rgba(19,98,158,1);">
+                    <h:panelGrid columns="2" style="margin-bottom: 20px; box-shadow: 3px 4px 22px 3px rgba(173,154,31,1);">
                         <h:outputText value="ФИО: " />
                         <h:inputText value="#{userPage.app3.fio}" >
                             <p:ajax />
@@ -251,6 +263,11 @@
                         <h:inputText value="#{userPage.app3.thirtyBelow}" >
                             <p:ajax />
                         </h:inputText>
+                        
+                        <h:outputText value="Подразделение: " />
+                        <h:inputText value="#{userPage.app3.podrazdelenie}" >
+                            <p:ajax />
+                        </h:inputText>
 
                         <p:commandButton update="according:app3tableform:app3Table" value="Добавить данные" actionListener="#{userPage.add(3)}"/>
                     </h:panelGrid>
@@ -269,6 +286,7 @@
                             <p:row>
                                 <p:column rowspan="2" headerText="№" />
                                 <p:column rowspan="2"   headerText="ФИО" />
+                                <p:column rowspan="2"   headerText="Подразделение" />
                                 <p:column rowspan="2"  headerText="Професися" />
                                 <p:column rowspan="2"  headerText="Подготовка новых рабочих(кол-во/квартал)" />
                                 <p:column rowspan="2"  headerText="Обуч. 2 профессиям" />
@@ -301,6 +319,13 @@
                             </p:cellEditor>
                         </p:column>
 
+                        <p:column>
+                            <p:cellEditor>
+                                <f:facet name="output"><h:outputText value="#{items.podrazdelenie}" /></f:facet>
+                                <f:facet name="input"><p:inputText value="#{items.podrazdelenie}" style="width:96%"/></f:facet>
+                            </p:cellEditor>
+                        </p:column>
+                        
                         <p:column >
                             <p:cellEditor>
                                 <f:facet name="output"><h:outputText value="#{items.dolzhnost}" /></f:facet>
@@ -370,7 +395,7 @@
             </p:tab>
             <p:tab title="Список обучающихся в учебных заведениях (в ВУЗах, техникумах и колледжах)">
                 <h:form id="app4addataform">
-                    <h:panelGrid columns="2" style="margin-bottom: 20px; box-shadow: 3px 4px 22px 3px rgba(19,98,158,1);">
+                    <h:panelGrid columns="2" style="margin-bottom: 20px; box-shadow: 3px 4px 22px 3px rgba(173,154,31,1);">
                         <h:outputText value="ФИО: " />
                         <h:inputText value="#{userPage.app4.fio}" >
                             <p:ajax />
@@ -577,7 +602,7 @@
             </p:tab>
             <p:tab title="Отчет о повышении квалификации работников и специалистов подразделения">
                 <h:form id="app5addataform">
-                    <h:panelGrid columns="2" style="margin-bottom: 20px; box-shadow: 3px 4px 22px 3px rgba(19,98,158,1);">
+                    <h:panelGrid columns="2" style="margin-bottom: 20px; box-shadow: 3px 4px 22px 3px rgba(173,154,31,1);">
                         <h:outputText value="ФИО: " />
                         <h:inputText value="#{userPage.app5.fio}" >
                             <p:ajax />
@@ -664,7 +689,7 @@
             </p:tab>
             <p:tab title="Сведения о работниках подразделения обучающихся в аспирантуре">
                 <h:form id="app6addataform">
-                    <h:panelGrid columns="2" style="margin-bottom: 20px; box-shadow: 3px 4px 22px 3px rgba(19,98,158,1);">
+                    <h:panelGrid columns="2" style="margin-bottom: 20px; box-shadow: 3px 4px 22px 3px rgba(173,154,31,1);">
                         <h:outputText value="ФИО: " />
                         <h:inputText value="#{userPage.app6.fio}" >
                             <p:ajax />

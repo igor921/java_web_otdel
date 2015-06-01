@@ -4,6 +4,7 @@ package ForReport;
 public class Table1 {
    int id;
    String speciality;
+   String vtorayaSpec;
    String podrazdelenie="основное подразд.";
    int count;
    String razryad;
@@ -11,6 +12,7 @@ public class Table1 {
    String srok;
    String eduBuild = "ОАО \"машиностроение\"";
    String info;
+   
 
     public Table1(int id, String speciality, int count, String razryad, String srok, String info) {
         this.id = id;
@@ -21,6 +23,31 @@ public class Table1 {
         this.info = info;
     }
 
+    public Table1(int id, String speciality, int count, String razryad, String povishRazryad, String srok, String info, String podrazdelenie) {
+        this.id = id;
+        this.speciality = speciality;
+        this.count = count;
+        this.razryad = razryad;
+        this.povishRazryad = povishRazryad;
+        this.srok = srok;
+        this.info = info;
+        this.podrazdelenie = podrazdelenie;
+    }
+    
+    public Table1(int id, String speciality, int count, String razryad, String povishRazryad, String srok, String info, String podrazdelenie, String vtorayaSpec, String eduBuild) {
+        this.id = id;
+        this.speciality = speciality;
+        this.count = count;
+        this.razryad = razryad;
+        this.povishRazryad = povishRazryad;
+        this.srok = srok;
+        this.info = info;
+        this.podrazdelenie = podrazdelenie;
+        this.vtorayaSpec = vtorayaSpec;
+        this.eduBuild = eduBuild;
+    }
+
+    
    
    
     public int getId() {

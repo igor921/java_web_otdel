@@ -14,7 +14,8 @@
             <p:growl showDetail="true" id="messages"/>
             <ui:include src="WEB-INF/template/menu.xhtml" />
             <h:form>
-                <p:commandButton value="Сформировать" actionListener="#{otchetPage.buildReport()}" update="table1" />
+                <img id="progress" style="visibility: hidden; "  src="ajax_loader_red_512.gif" width="100" height="100" />
+                <p:commandButton oncomplete="ends();" onclick="beg();" value="Сформировать" actionListener="#{otchetPage.buildReport()}" update="table1 table2 table3 table4 table5_1 table5_2 table5_3 table5_4" />
                 <p:dataTable id="table1" var="item" value="#{otchetPage.table1}" sortBy="#{item.info}" >
                     <f:facet name="header">
                         I. Подготовка новых рабочих
@@ -30,6 +31,9 @@
                     </p:column>
                     <p:column headerText="Количество" >
                         <h:outputText value="#{item.count}" />
+                    </p:column>
+                    <p:column headerText="Разряд" >
+                        <h:outputText value="#{item.razryad}" />
                     </p:column>
                     <p:column headerText="Повышение разряда" >
                         <h:outputText value="#{item.povishRazryad}" />
@@ -54,8 +58,292 @@
                         </p:column>
                     </p:summaryRow>
                 </p:dataTable>
+
+                <p:dataTable id="table2" var="item" value="#{otchetPage.table2}" sortBy="#{item.info}" >
+                    <f:facet name="header">
+                        II. Повышение квалификации
+                    </f:facet>
+                    <p:column headerText="№" >
+                        <h:outputText value="#{item.id+1}" />
+                    </p:column>
+                    <p:column headerText="Специальность" >
+                        <h:outputText value="#{item.speciality}" />
+                    </p:column>
+                    <p:column headerText="Подразделение" >
+                        <h:outputText value="#{item.podrazdelenie}" />
+                    </p:column>
+                    <p:column headerText="Количество" >
+                        <h:outputText value="#{item.count}" />
+                    </p:column>
+                    <p:column headerText="Разряд" >
+                        <h:outputText value="#{item.razryad}" />
+                    </p:column>
+                    <p:column headerText="Повышение разряда" >
+                        <h:outputText value="#{item.povishRazryad}" />
+                    </p:column>
+                    <p:column headerText="Срок" >
+                        <h:outputText value="#{item.srok}" />
+                    </p:column>
+                    <p:column headerText="Уч.заведение" >
+                        <h:outputText value="#{item.eduBuild}" />
+                    </p:column>
+                    <p:column headerText="Примечание" >
+                        <h:outputText value="#{item.info}" />
+                    </p:column>
+                    <p:summaryRow>
+                        <p:column colspan="3" style="text-align:right">
+                            <h:outputText value="Всего:" />
+                        </p:column>
+                        <p:column colspan="5">
+                            <h:outputText value="#{otchetPage.table2allCount}">
+
+                            </h:outputText>
+                        </p:column>
+                    </p:summaryRow>
+                </p:dataTable>
+
+                <p:dataTable id="table3" var="item" value="#{otchetPage.table3}" sortBy="#{item.info}" >
+                    <f:facet name="header">
+                        III. Обучение 2 специальности
+                    </f:facet>
+                    <p:column headerText="№" >
+                        <h:outputText value="#{item.id+1}" />
+                    </p:column>
+                    <p:column headerText="Специальность" >
+                        <h:outputText value="#{item.speciality}" />
+                    </p:column>
+                    <p:column headerText="Подразделение" >
+                        <h:outputText value="#{item.podrazdelenie}" />
+                    </p:column>
+                    <p:column headerText="Количество" >
+                        <h:outputText value="#{item.count}" />
+                    </p:column>
+                    <p:column headerText="Разряд" >
+                        <h:outputText value="#{item.razryad}" />
+                    </p:column>
+                    <p:column headerText="Повышение разряда" >
+                        <h:outputText value="#{item.povishRazryad}" />
+                    </p:column>
+                    <p:column headerText="Срок" >
+                        <h:outputText value="#{item.srok}" />
+                    </p:column>
+                    <p:column headerText="Уч.заведение" >
+                        <h:outputText value="#{item.eduBuild}" />
+                    </p:column>
+                    <p:column headerText="Примечание" >
+                        <h:outputText value="#{item.info}" />
+                    </p:column>
+                    <p:summaryRow>
+                        <p:column colspan="3" style="text-align:right">
+                            <h:outputText value="Всего:" />
+                        </p:column>
+                        <p:column colspan="5">
+                            <h:outputText value="#{otchetPage.table3allCount}">
+
+                            </h:outputText>
+                        </p:column>
+                    </p:summaryRow>
+                </p:dataTable>
+
+                <p:dataTable id="table4" var="item" value="#{otchetPage.table4}" sortBy="#{item.info}" >
+                    <f:facet name="header">
+                        IV. Обучение рабочим профессиям в сторонних организациях и учебных заведениях
+                    </f:facet>
+                    <p:column headerText="№" >
+                        <h:outputText value="#{item.id+1}" />
+                    </p:column>
+                    <p:column headerText="Специальность" >
+                        <h:outputText value="#{item.speciality}" />
+                    </p:column>
+                    <p:column headerText="Подразделение" >
+                        <h:outputText value="#{item.podrazdelenie}" />
+                    </p:column>
+                    <p:column headerText="Количество" >
+                        <h:outputText value="#{item.count}" />
+                    </p:column>
+                    <p:column headerText="Разряд" >
+                        <h:outputText value="#{item.razryad}" />
+                    </p:column>
+                    <p:column headerText="Повышение разряда" >
+                        <h:outputText value="#{item.povishRazryad}" />
+                    </p:column>
+                    <p:column headerText="Срок" >
+                        <h:outputText value="#{item.srok}" />
+                    </p:column>
+                    <p:column headerText="Уч.заведение" >
+                        <h:outputText value="#{item.eduBuild}" />
+                    </p:column>
+                    <p:column headerText="Примечание" >
+                        <h:outputText value="#{item.info}" />
+                    </p:column>
+                    <p:summaryRow>
+                        <p:column colspan="3" style="text-align:right">
+                            <h:outputText value="Всего:" />
+                        </p:column>
+                        <p:column colspan="5">
+                            <h:outputText value="#{otchetPage.table4allCount}">
+
+                            </h:outputText>
+                        </p:column>
+                    </p:summaryRow>
+                </p:dataTable>
+
+                <p:spacer width="100" height="60" />
+                <p:dataTable emptyMessage="" >
+                    <f:facet name="header">
+                        V. Повышение квалификации руководителей и специалистов
+                        V.I. Курсы, семинары (с отрывом от производства)
+                    </f:facet>
+                    <p:column headerText="№" />
+                    <p:column headerText="Тематика" />
+                    <p:column headerText="Подразделение" />
+                    <p:column headerText="Количество" />
+                    <p:column headerText="Учебное заведение" />
+                </p:dataTable>
+                <p:dataTable sortBy="#{item.info}" id="table5_1" var="item" value="#{otchetPage.table5_1}">
+                    <f:facet name="header">
+                        I квартал
+                    </f:facet>
+                    <p:column>
+                        #{item.id}
+                    </p:column>
+                    <p:column>
+                        #{item.theme}
+                    </p:column>
+                    <p:column>
+                        #{item.podrazdelemie}
+                    </p:column>
+                    <p:column>
+                        1
+                    </p:column>
+                    <p:column>
+                        #{item.building}
+                    </p:column>
+                    <p:summaryRow>
+                        <p:column colspan="2" style="text-align:right">
+                            <h:outputText value="Всего:" />
+                        </p:column>
+                        <p:column colspan="3">
+                            <h:outputText value="#{otchetPage.table5_1allCount}">
+
+                            </h:outputText>
+                        </p:column>
+                    </p:summaryRow>
+                </p:dataTable>
+                <p:dataTable sortBy="#{item.info}" id="table5_2" var="item" value="#{otchetPage.table5_2}">
+                    <f:facet name="header">
+                        II квартал
+                    </f:facet>
+                    <p:column>
+                        #{item.id}
+                    </p:column>
+                    <p:column>
+                        #{item.theme}
+                    </p:column>
+                    <p:column>
+                        #{item.podrazdelemie}
+                    </p:column>
+                    <p:column>
+                        1
+                    </p:column>
+                    <p:column>
+                        #{item.building}
+                    </p:column>
+                    <p:summaryRow>
+                        <p:column colspan="2" style="text-align:right">
+                            <h:outputText value="Всего:" />
+                        </p:column>
+                        <p:column colspan="3">
+                            <h:outputText value="#{otchetPage.table5_2allCount}">
+
+                            </h:outputText>
+                        </p:column>
+                    </p:summaryRow>
+                </p:dataTable>
+                <p:dataTable sortBy="#{item.info}" id="table5_3" var="item" value="#{otchetPage.table5_3}">
+                    <f:facet name="header">
+                        III квартал
+                    </f:facet>
+                    <p:column>
+                        #{item.id}
+                    </p:column>
+                    <p:column>
+                        #{item.theme}
+                    </p:column>
+                    <p:column>
+                        #{item.podrazdelemie}
+                    </p:column>
+                    <p:column>
+                        1
+                    </p:column>
+                    <p:column>
+                        #{item.building}
+                    </p:column>
+                    <p:summaryRow>
+                        <p:column colspan="2" style="text-align:right">
+                            <h:outputText value="Всего:" />
+                        </p:column>
+                        <p:column colspan="3">
+                            <h:outputText value="#{otchetPage.table5_3allCount}">
+
+                            </h:outputText>
+                        </p:column>
+                    </p:summaryRow>
+                </p:dataTable>
+                <p:dataTable sortBy="#{item.info}" id="table5_4" var="item4" value="#{otchetPage.table5_4}">
+                    <f:facet name="header">
+                        IV квартал
+                    </f:facet>
+                    <p:column>
+                        #{item4.id}
+                    </p:column>
+                    <p:column>
+                        #{item4.theme}
+                    </p:column>
+                    <p:column>
+                        #{item4.podrazdelemie}
+                    </p:column>
+                    <p:column>
+                        1
+                    </p:column>
+                    <p:column>
+                        #{item4.building}
+                    </p:column>
+                    <p:summaryRow>
+                        <p:column colspan="1" style="text-align:right">
+                            <h:outputText value="Всего:" />
+                        </p:column>
+                        <p:column colspan="1">
+                            <h:outputText value="#{otchetPage.table5_4allCount}">
+
+                            </h:outputText>
+                        </p:column>
+<!--                    </p:summaryRow>
+                    <p:summaryRow>-->
+                        <p:column colspan="1" style="text-align:right">
+                            <h:outputText value="Всего за раздел V.I:" />
+                        </p:column>
+                        <p:column colspan="2">
+                            <h:outputText value="#{otchetPage.table5_4allCount+otchetPage.table5_3allCount+otchetPage.table5_2allCount+otchetPage.table5_1allCount}">
+
+                            </h:outputText>
+                        </p:column>
+                    </p:summaryRow>
+                </p:dataTable>
+                
             </h:form>
         </h:form>
+        <script>
+            function beg() {
+                var element = document.getElementById("progress");
+                element.style.visibility = "visible";
+            }
+
+            function ends() {
+                var element = document.getElementById("progress");
+                element.style.visibility = "hidden";
+            }
+        </script>
     </h:body>
 </html>
 
